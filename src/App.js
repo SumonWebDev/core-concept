@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -12,6 +12,7 @@ const products=[
   return (
     <div className="App">
       <header className="App-header">
+        <Counter></Counter>
         <Product product={products[0]}></Product>
         <Product product={products[1]}></Product>
         <Product product={products[2]}></Product>
@@ -23,6 +24,20 @@ const products=[
     </div>
   );
 }
+function Counter(){
+  const [count,setCount] = useState(10);
+  const handleIncrease=()=>{
+    const newCount=count +1;
+    setCount(newCount);
+  }
+  return(
+    <div>
+<h1>count:{count}</h1>
+<button onClick={()=>setCount(count -1)}>Decrease</button>
+<button onClick={handleIncrease}>Increase</button>
+    </div>
+  )
+}
 
 function Product(props){
    const productStyle={
@@ -32,7 +47,7 @@ function Product(props){
     height:'350px',
     width:'300px',
     float:'left',
-    margin:'10px'
+    margin:'10px'  
 
   }
   return(
